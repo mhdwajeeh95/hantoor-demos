@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>هانتور — لعبة التعريف</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <header class="topbar">
+        <div class="progress">
+          <span id="progressText">0 / 0</span>
+          <div class="progress-bar"><div id="progressFill"></div></div>
+        </div>
+        <div class="section" id="sectionLabel"></div>
+      </header>
+
+      <section class="stage">
+        <div class="image-wrap">
+          <img id="hantoorImage" src="assets/hantoor.png" alt="Hantoor" />
+          <div id="grid" class="grid" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section class="question-card" id="questionCard">
+        <p class="question-text" id="questionText">…</p>
+        <div class="actions">
+          <button class="btn btn-yes" id="btnYes">نعم</button>
+          <button class="btn btn-no" id="btnNo">لا</button>
+        </div>
+      </section>
+
+      <div id="finale" class="finale hidden">
+        <div class="finale-inner">
+          <h1>هانتور</h1>
+          <p class="slogan">منصة تأجير السيارات الموثوقة في سوريا</p>
+          <button class="btn btn-restart" id="btnRestart">إعادة</button>
+        </div>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
