@@ -7,6 +7,8 @@ const state = {
   rows: 1,
   cols: 1,
   coveredCells: [],
+  timerInterval: null,
+  elapsed: 0,
 };
 
 const els = {
@@ -25,6 +27,8 @@ const els = {
   finale: document.getElementById("finale"),
   btnRestart: document.getElementById("btnRestart"),
   scorePercent: document.getElementById("scorePercent"),
+  scoreTime: document.getElementById("scoreTime"),
+  timer: document.getElementById("timer"),
 };
 
 async function loadQuestions() {
@@ -101,11 +105,13 @@ function renderQuestion() {
 }
 
 function finish() {
+  stopTimer();
   revealAllCells();
   els.progressText.textContent = `${state.questions.length} / ${state.questions.length}`;
   els.progressFill.style.width = `100%`;
   const pct = Math.round((state.yesCount / state.questions.length) * 100);
   els.scorePercent.textContent = `${pct}%`;
+  els.scoreTime.textContent = `خلال ${formatTime(state.elapsed)}`;
   setTimeout(() => {
     els.finale.classList.remove("hidden");
   }, 600);
@@ -134,19 +140,42 @@ function onNo() {
   advance();
 }
 
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function startTimer() {
+  state.elapsed = 0;
+  els.timer.textContent = "0:00";
+  state.timerInterval = setInterval(() => {
+    state.elapsed += 1;
+    els.timer.textContent = formatTime(state.elapsed);
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(state.timerInterval);
+  state.timerInterval = null;
+}
+
 function showGame() {
   els.intro.classList.add("hidden");
   els.topbar.classList.remove("hidden");
   els.stage.classList.remove("hidden");
   els.questionCard.classList.remove("hidden");
+  startTimer();
 }
 
 function reset() {
+  stopTimer();
   state.index = 0;
   state.yesCount = 0;
   buildGrid(state.rows, state.cols);
   els.finale.classList.add("hidden");
   renderQuestion();
+  startTimer();
 }
 
 async function init() {
