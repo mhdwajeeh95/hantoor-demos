@@ -9,10 +9,10 @@
   --brand-dim: rgba(89, 180, 105, 0.06);
   --yes: #59b469;
   --no: #e5484d;
-  --cover: #071510;
-  --cover-edge: #020a05;
-  --card: #0c1a11;
-  --border: #1a3322;
+  --cover: #1a1f2a;
+  --cover-edge: #0a0d12;
+  --card: #161b22;
+  --border: #232a36;
 }
 
 * { box-sizing: border-box; }
@@ -76,7 +76,7 @@ body::before {
 
 .progress-bar {
   height: 5px;
-  background: #0e2016;
+  background: #1f2630;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -140,7 +140,7 @@ body::before {
 }
 
 .cell {
-  background: linear-gradient(135deg, #0e2016, var(--cover));
+  background: linear-gradient(135deg, #232a36, var(--cover));
   transition: opacity 450ms ease, transform 450ms ease;
 }
 
