@@ -23,7 +23,7 @@
   --border: #232a36;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; font-family: inherit; }
 
 html, body {
   margin: 0;
