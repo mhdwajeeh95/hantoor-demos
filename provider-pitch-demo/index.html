@@ -8,7 +8,27 @@
   </head>
   <body>
     <main id="app">
-      <header class="topbar">
+      <div id="intro" class="intro">
+        <div class="intro-inner">
+          <div class="intro-logo">هانتور</div>
+          <h2 class="intro-title">قبل ما نبدأ...</h2>
+          <p class="intro-body">
+            رح نسألك <strong>بضعة أسئلة سريعة</strong> عن طريقة شغلك هلق —
+            كل سؤال جوابو نعم أو لا، وكل «نعم» بتكشف جزء من الصورة.
+          </p>
+          <div class="intro-deal">
+            <span class="deal-icon">🤝</span>
+            <p>
+              إذا طلعت نسبة الـ«نعم» فوق الـ<strong>٥٠٪</strong>، يعني نص الصورة
+              انكشف — بتعطينا <strong>٣٠ دقيقة</strong> تسمعنا فيها شو عنا.
+              بالمقابل، نحن كمان رح نكون اختصرنا عليك ساعات من البحث 😊
+            </p>
+          </div>
+          <button class="btn btn-start" id="btnStart">يلا نبدأ</button>
+        </div>
+      </div>
+
+      <header class="topbar hidden" id="topbar">
         <div class="progress">
           <span id="progressText">0 / 0</span>
           <div class="progress-bar"><div id="progressFill"></div></div>
@@ -16,14 +36,14 @@
         <div class="section" id="sectionLabel"></div>
       </header>
 
-      <section class="stage">
+      <section class="stage hidden" id="stage">
         <div class="image-wrap">
           <img id="hantoorImage" src="assets/hantoor.png" alt="Hantoor" />
           <div id="grid" class="grid" aria-hidden="true"></div>
         </div>
       </section>
 
-      <section class="question-card" id="questionCard">
+      <section class="question-card hidden" id="questionCard">
         <p class="question-text" id="questionText">…</p>
         <div class="actions">
           <button class="btn btn-yes" id="btnYes">نعم</button>

@@ -10,6 +10,10 @@ const state = {
 };
 
 const els = {
+  intro: document.getElementById("intro"),
+  btnStart: document.getElementById("btnStart"),
+  topbar: document.getElementById("topbar"),
+  stage: document.getElementById("stage"),
   grid: document.getElementById("grid"),
   questionText: document.getElementById("questionText"),
   questionCard: document.getElementById("questionCard"),
@@ -130,6 +134,13 @@ function onNo() {
   advance();
 }
 
+function showGame() {
+  els.intro.classList.add("hidden");
+  els.topbar.classList.remove("hidden");
+  els.stage.classList.remove("hidden");
+  els.questionCard.classList.remove("hidden");
+}
+
 function reset() {
   state.index = 0;
   state.yesCount = 0;
@@ -150,11 +161,13 @@ async function init() {
   buildGrid(rows, cols);
   renderQuestion();
 
+  els.btnStart.addEventListener("click", showGame);
   els.btnYes.addEventListener("click", onYes);
   els.btnNo.addEventListener("click", onNo);
   els.btnRestart.addEventListener("click", reset);
 
   document.addEventListener("keydown", (e) => {
+    if (!els.intro.classList.contains("hidden")) return;
     if (els.finale.classList.contains("hidden") === false) return;
     if (e.key === "ArrowRight" || e.key.toLowerCase() === "y") onYes();
     if (e.key === "ArrowLeft" || e.key.toLowerCase() === "n") onNo();
