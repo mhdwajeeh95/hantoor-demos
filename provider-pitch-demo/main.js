@@ -20,6 +20,7 @@ const els = {
   sectionLabel: document.getElementById("sectionLabel"),
   finale: document.getElementById("finale"),
   btnRestart: document.getElementById("btnRestart"),
+  scorePercent: document.getElementById("scorePercent"),
 };
 
 async function loadQuestions() {
@@ -51,6 +52,8 @@ function buildGrid(rows, cols) {
   for (let i = 0; i < rows * cols; i++) {
     const cell = document.createElement("div");
     cell.className = "cell";
+    cell._row = Math.floor(i / cols);
+    cell._col = i % cols;
     els.grid.appendChild(cell);
     cells.push(cell);
   }
@@ -59,8 +62,22 @@ function buildGrid(rows, cols) {
 
 function revealRandomCell() {
   if (state.coveredCells.length === 0) return;
-  const idx = Math.floor(Math.random() * state.coveredCells.length);
-  const [cell] = state.coveredCells.splice(idx, 1);
+  const { rows, cols } = state;
+  // Weight each cell by its normalised distance from center (0 = edge, 1 = center).
+  // Edge cells get weight 1, center cells get weight ~4, so center reveals ~4x more often.
+  const weights = state.coveredCells.map((c) => {
+    const dr = 1 - Math.abs(c._row - (rows - 1) / 2) / ((rows - 1) / 2 || 1);
+    const dc = 1 - Math.abs(c._col - (cols - 1) / 2) / ((cols - 1) / 2 || 1);
+    return 1 + 3 * dr * dc;
+  });
+  const total = weights.reduce((s, w) => s + w, 0);
+  let r = Math.random() * total;
+  let pick = weights.length - 1;
+  for (let i = 0; i < weights.length; i++) {
+    r -= weights[i];
+    if (r <= 0) { pick = i; break; }
+  }
+  const [cell] = state.coveredCells.splice(pick, 1);
   cell.classList.add("revealed");
 }
 
@@ -83,6 +100,8 @@ function finish() {
   revealAllCells();
   els.progressText.textContent = `${state.questions.length} / ${state.questions.length}`;
   els.progressFill.style.width = `100%`;
+  const pct = Math.round((state.yesCount / state.questions.length) * 100);
+  els.scorePercent.textContent = `${pct}%`;
   setTimeout(() => {
     els.finale.classList.remove("hidden");
   }, 600);
