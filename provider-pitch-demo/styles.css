@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Somar Sans";
+  src: url("../fonts/somar_sans_regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #050f09;
   --bg2: #0a1a10;
@@ -23,7 +31,7 @@ html, body {
   height: 100%;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, "SF Arabic", "Segoe UI", "Tahoma", sans-serif;
+  font-family: "Somar Sans", -apple-system, "SF Arabic", "Segoe UI", "Tahoma", sans-serif;
 }
 
 body {
