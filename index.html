@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>هانتور — الديموز</title>
+    <style>
+      :root {
+        --bg: #0e1116;
+        --fg: #f5f5f5;
+        --muted: #9aa3af;
+        --accent: #ffb703;
+        --card: #161b22;
+        --border: #232a36;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, "SF Arabic", "Segoe UI", "Tahoma", sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 32px 16px;
+        gap: 48px;
+      }
+
+      header {
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(36px, 6vw, 64px);
+        color: var(--accent);
+        letter-spacing: 2px;
+      }
+
+      header p {
+        margin: 10px 0 0;
+        font-size: clamp(14px, 2vw, 18px);
+        color: var(--muted);
+      }
+
+      .demos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        width: 100%;
+        max-width: 900px;
+      }
+
+      .demo-card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 28px 32px;
+        text-decoration: none;
+        color: var(--fg);
+        min-width: 220px;
+        flex: 1;
+        max-width: 340px;
+        transition: border-color 150ms ease, transform 150ms ease;
+      }
+
+      .demo-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+
+      .demo-card .label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .demo-card h2 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .demo-card p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>هانتور</h1>
+      <p>مجموعة العروض التوضيحية</p>
+    </header>
+
+    <div class="demos">
+      <a class="demo-card" href="provider-pitch-demo/">
+        <span class="label">Demo 01</span>
+        <h2>عرض المزوّد</h2>
+        <p>لعبة أسئلة تكشف تدريجياً عن صورة هانتور مع كل إجابة.</p>
+      </a>
+    </div>
+  </body>
+</html>
